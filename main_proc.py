@@ -19,13 +19,13 @@ def iterdict(d, seq, fc):
             print(seq + "/" + k + ", " + str(v).replace("\n", '\\n'))
             fc.write(seq + "/" + k + ", " + str(v).replace("\n", '\\n') + "\n")
 
-def multi_proc(hashtag_data_list, output_path):
+def multi_proc(json_data_list, output_path):
 
-    for hashtag_name, hashtag_data in hashtag_data_list:
-        save_path = output_path + "/" + hashtag_name + ".csv"
+    for json_name, json_data in json_data_list:
+        save_path = output_path + "/" + json_name + ".csv"
         fc = open(save_path, "a")
         fc.write("key, value\n")
-        iterdict(hashtag_data, "data", fc)
+        iterdict(json_data, "data", fc)
         fc.close()
 
 
@@ -35,11 +35,11 @@ def main_convert(input_json_path, output_path):
 
     json_data_list = []
 
-    for each_hashtag in json_path:
+    for each_path in json_path:
 
-        each_json_name = each_hashtag.split("/")[-1].split("_")[0]
+        each_json_name = each_path.split("/")[-1].split("_")[0]
 
-        f = open(each_hashtag, "r")
+        f = open(each_path, "r")
         json_data = {}
         try:
             json_data = json.loads(f.read())
