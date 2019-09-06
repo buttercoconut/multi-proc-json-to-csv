@@ -37,7 +37,7 @@ def main_convert(input_json_path, output_path):
 
     for each_path in json_path:
 
-        each_json_name = each_path.split("/")[-1].split("_")[0]
+        each_json_name = each_path.split("/")[-1].split(".")[0]
 
         f = open(each_path, "r")
         json_data = {}
